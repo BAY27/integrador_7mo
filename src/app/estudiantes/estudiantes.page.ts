@@ -30,12 +30,13 @@ export class EstudiantesPage implements OnInit {
       componentProps: { estudiante }
     });
 
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        console.log("🚀 ~ EstudiantesPage ~ modal.onDidDismiss ~ result.data:", result.data)
-        // this.saveProduct(result.data); // Save the edited customer
-      }
-    });
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      console.log("🚀 ~ EstudiantesPage ~ modal.onDidDismiss ~ data:", data);
+      // this.saveProduct(data); // Save the edited customer
+    }
   }
 
   deleteStudent(codestudiante: number) {
