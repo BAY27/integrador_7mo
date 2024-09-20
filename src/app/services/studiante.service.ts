@@ -20,7 +20,7 @@ export class StudianteService {
   }
 
   updateStudent(student: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/estudiantes.php?action=update`, student);
+    return this.http.put(`${this.apiUrl}/students/${student.codestudiante}`, student);
   }
 
   deleteStudent(codestudiante: number): Observable<any> {
