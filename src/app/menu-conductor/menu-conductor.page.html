@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Servicios - Conductor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Bienvenido {{ nombre }}</ion-label>
+  </ion-item>
+
+  <ion-card>
+    <!-- Opciones exclusivas para Conductores -->
+    <ion-item>
+      <ion-button expand="block" color="tertiary" (click)="irhorarios()"> 
+        <ion-icon name="time-outline" slot="start"></ion-icon>Horarios
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-button expand="block" color="success" (click)="irrecorridos()"> 
+        <ion-icon name="map-outline" slot="start"></ion-icon>Recorridos
+      </ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

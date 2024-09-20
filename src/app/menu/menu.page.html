@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Servicios {{roles}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label> Bienvenido {{nombre}}</ion-label>
+  </ion-item>
+
+  <ion-card>
+    <!-- Botón Perfil -->
+    <ion-item>
+      <ion-button expand="block" color="primary" (click)="irperfil()"> 
+        <ion-icon name="person-outline" slot="start"></ion-icon>Perfil
+      </ion-button>
+    </ion-item>
+
+    <!-- Botón Choferes -->
+    <ion-item>
+      <ion-button expand="block" color="secondary" (click)="irchofer()"> 
+        <ion-icon name="car-outline" slot="start"></ion-icon>Choferes
+      </ion-button>
+    </ion-item>
+
+    <!-- Botón Estudiantes -->
+    <ion-item>
+      <ion-button expand="block" color="tertiary" (click)="irestudiante()"> 
+        <ion-icon name="school-outline" slot="start"></ion-icon>Estudiantes
+      </ion-button>
+    </ion-item>
+
+    <!-- Botón Buses -->
+    <ion-item>
+      <ion-button expand="block" color="success" (click)="irbus()"> 
+        <ion-icon name="bus-outline" slot="start"></ion-icon>Buses
+      </ion-button>
+    </ion-item>
+
+      <!-- Botón Monitoreo Tiempo Real -->
+    <ion-item>
+      <ion-button expand="block" color="warning" (click)="irmonitoreo()"> 
+        <ion-icon name="pulse-outline" slot="start"></ion-icon>Monitoreo tiempo real
+      </ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

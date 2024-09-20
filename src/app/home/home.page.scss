@@ -1,27 +1,78 @@
-#container {
+.etiqueta
+{
+  font-size: 20px;
+  font-weight: bold;
+  color: #000acc;
+  margin-top: 10px;
+  font-family: Arial;
   text-align: center;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+}
+.titulo{
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+  font-family: Arial;
+  text-align: center;
+
+}
+.opciones{
+  font-family: 'monospace';
+  font-size: 18px;
+  text-align: center;
+  color:white;
+}
+#container {
+  padding: 20px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.titulo {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #006e51;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.bus-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
 }
 
-#container a {
-  text-decoration: none;
+.card-login {
+  margin-top: 20px;
+}
+
+.opciones-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.opciones {
+  color: #006e51;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Alinear y centrar los logos en una fila horizontal */
+.logos-container {
+  display: flex;
+  justify-content: center; /* Centrará los logos horizontalmente */
+  align-items: center;     /* Asegura que los logos estén alineados verticalmente */
+  gap: 20px;               /* Espacio entre los logos */
+  margin-top: 20px;        /* Un poco de margen superior para separarlos del contenido */
+}
+
+.logo {
+  width: 80px;  /* Tamaño de cada logo */
+  height: auto; /* Mantener proporciones */
+}
+
+
+ion-button {
+  margin-top: 20px;
+  --border-radius: 20px;
+  font-size: 1.1rem;
 }

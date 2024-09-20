@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Servicios - Estudiante</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Bienvenido {{ nombre }}</ion-label>
+  </ion-item>
+
+  <ion-card>
+    <!-- Solo Monitoreo para Estudiantes -->
+    <ion-item>
+      <ion-button expand="block" color="warning" (click)="irmonitoreo()"> 
+        <ion-icon name="pulse-outline" slot="start"></ion-icon>Monitoreo tiempo real
+      </ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

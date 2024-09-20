@@ -1,20 +1,65 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title text-center> Sistema de Gestión de Buses UNIANDES-AMBATO </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- Imagen del Bus en el centro -->
+    <ion-item lines="none" class="logo-container">
+      <img src="assets/img/bus.png" class="bus-image" alt="Bus UTB" />
+    </ion-item>
+
+    <!-- Bienvenida -->
+    <ion-item lines="none">
+      <ion-label class="titulo" text-center>Bienvenidos a las Rutas de Buses</ion-label>
+    </ion-item>
+
+    <!-- Card para el Inicio de Sesión -->
+    <ion-card color="light" class="card-login">
+      <ion-card-header>
+        <ion-card-title class="etiqueta" text-center>Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Campo de Usuario con Icono -->
+        <ion-item>
+          <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" [(ngModel)]="txt_usuario"></ion-input>
+        </ion-item>
+
+        <!-- Campo de Contraseña con Icono -->
+        <ion-item>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Clave</ion-label>
+          <ion-input type="password" [(ngModel)]="txt_clave"></ion-input>
+        </ion-item>
+
+        <!-- Botón Iniciar Sesión -->
+        <ion-button expand="block" color="primary" (click)="loggin()">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Iniciar Sesión
+        </ion-button>
+
+        <!-- Opciones de Registrar y Recuperar Clave -->
+        <div class="opciones-container">
+          <span class="opciones" (click)="register()">Registrar</span>
+          <span class="opciones" (click)="recuperar()">Recuperar Clave</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Logotipos -->
+<ion-item lines="none" class="logos-container">
+  <img src="assets/img/logo.png" alt="Logo Universidad" class="logo" />
+  <img src="assets/img/logo_utb.png" alt="Logo UTB" class="logo" />
+  <img src="assets/img/logo.png" alt="Logo Universidad" class="logo" />
+</ion-item>
+
   </div>
+
+  <!-- Loading Spinner -->
+  <ion-loading trigger="loading" message="Cargando...." duration="2000"></ion-loading>
 </ion-content>

@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Crear Cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input label="Cédula" type="text" [(ngModel)]="txt_cedula" (focusout)="vcedula()" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Nombre" type="text" [(ngModel)]="txt_nombre" name="nombre" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Apellido" type="text" [(ngModel)]="txt_apellido" name="apellido" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Clave" type="password" [(ngModel)]="txt_clave" name="clave" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input label="Correo" type="email" [(ngModel)]="txt_correo" name="correo" required></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" class="ion-justify-content-center">
+    <ion-button color="success" (click)="registrarPersona()">Registrar</ion-button>
+    <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>
+  </ion-item>
+</ion-content>
