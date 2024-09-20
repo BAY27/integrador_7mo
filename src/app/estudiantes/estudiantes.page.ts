@@ -25,17 +25,29 @@ export class EstudiantesPage implements OnInit {
   }
 
   async openModal(estudiante?: any) {
-    const modal = await this.modalController.create({
-      component: EstudiantesModalPage,
-      componentProps: { estudiante }
-    });
+    try {
+      const modal = await this.modalController.create({
+        component: EstudiantesModalPage,
+        componentProps: { estudiante }
+      });
 
-    await modal.present();
+      await modal.present();
 
-    const { data } = await modal.onDidDismiss();
-    if (data) {
-      console.log("🚀 ~ EstudiantesPage ~ modal.onDidDismiss ~ data:", data);
-      // this.saveProduct(data); // Save the edited customer
+      const { data } = await modal.onDidDismiss();
+      if (data) {
+        if (data?.codestudiante) {
+          await this.studentService.updateStudent(data).subscribe((data) => {
+            this.loadStudents();
+          });
+        } else {
+          await this.studentService.createStudent(data).subscribe((data) => {
+            this.loadStudents();
+          });
+        }
+      }
+    } catch (error) {
+      console.error(error)
+
     }
   }
 

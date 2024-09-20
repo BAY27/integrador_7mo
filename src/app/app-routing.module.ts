@@ -57,6 +57,14 @@ const routes: Routes = [
     path: 'real-time',
     loadChildren: () => import('./real-time/real-time.module').then( m => m.RealTimePageModule)
   },
+  {
+    path: 'estudiantes',
+    loadChildren: () => import('./estudiantes/estudiantes.module').then( m => m.EstudiantesPageModule)
+  },
+  {
+    path: 'estudiantes-modal',
+    loadChildren: () => import('./estudiantes-modal/estudiantes-modal.module').then( m => m.EstudiantesModalPageModule)
+  },
 ];
 
 @NgModule({

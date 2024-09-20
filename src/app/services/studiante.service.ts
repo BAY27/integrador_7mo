@@ -16,14 +16,14 @@ export class StudianteService {
   }
 
   createStudent(student: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/students`, student);
+    return this.http.post(`${this.apiUrl}/estudiantes.php`, student);
   }
 
   updateStudent(student: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/students/${student.codestudiante}`, student);
+    return this.http.put(`${this.apiUrl}/estudiantes.php`, student);
   }
 
   deleteStudent(codestudiante: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/students/${codestudiante}`);
+    return this.http.delete(`${this.apiUrl}/estudiantes.php?codestudiante=${codestudiante}`);
   }
 }

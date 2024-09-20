@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Administracion de Usuarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openModal()">
+        Crear Usuario
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lista de Usuarios</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead style="background-color: #f4f4f4;">
+          <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Cedula</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Nombres y Apellidos</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students">
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ student.cedula }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">{{ student.nombres_apellidos }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+              <ion-icon name="create" (click)="openModal(student)" style="cursor: pointer; margin-right: 10px;"></ion-icon>
+              <ion-icon name="trash" (click)="deleteStudent(student.codestudiante)" style="cursor: pointer;"></ion-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

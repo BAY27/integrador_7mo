@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ estudiante.codestudiante ? 'Editar Usuario' : 'Crear Usuario' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Cedula</ion-label>
+    <ion-input [(ngModel)]="estudiante.cedula" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombres y Apellidos</ion-label>
+    <ion-input [(ngModel)]="estudiante.nombres_apellidos" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="save()">
+    Guardar
+  </ion-button>
+</ion-content>
