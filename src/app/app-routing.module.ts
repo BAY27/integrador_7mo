@@ -43,8 +43,8 @@ const routes: Routes = [
     path: 'mcontacto',
     loadChildren: () => import('./mcontacto/mcontacto.module').then( m => m.McontactoPageModule)
   },
-  
-  
+
+
   {
     path: 'menu-estudiante',
     loadChildren: () => import('./menu-estudiante/menu-estudiante.module').then( m => m.MenuEstudiantePageModule)
@@ -52,6 +52,10 @@ const routes: Routes = [
   {
     path: 'menu-conductor',
     loadChildren: () => import('./menu-conductor/menu-conductor.module').then( m => m.MenuConductorPageModule)
+  },
+  {
+    path: 'real-time',
+    loadChildren: () => import('./real-time/real-time.module').then( m => m.RealTimePageModule)
   },
 ];
 
