@@ -65,6 +65,11 @@ const routes: Routes = [
     path: 'estudiantes-modal',
     loadChildren: () => import('./estudiantes-modal/estudiantes-modal.module').then( m => m.EstudiantesModalPageModule)
   },
+  {
+    path: 'bus',
+    loadChildren: () => import('./bus/bus.module').then( m => m.BusPageModule)
+  },
+
 ];
 
 @NgModule({

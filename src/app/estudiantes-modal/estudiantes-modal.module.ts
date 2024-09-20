@@ -12,6 +12,7 @@ import { EstudiantesModalPage } from './estudiantes-modal.page';
   imports: [
     CommonModule,
     FormsModule,
+    FormsModule,
     IonicModule,
     EstudiantesModalPageRoutingModule
   ],

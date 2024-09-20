@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./estudiantes-modal.page.scss'],
 })
 export class EstudiantesModalPage implements OnInit {
-  @Input() estudiante: any = { name: '', price: 0, stock: 0 }; // Default to empty product
+  @Input() estudiante: any = { cedula: '', nombres_apellidos: ""}; // Initialize empty product object
 
   constructor(private modalController: ModalController) {}
 

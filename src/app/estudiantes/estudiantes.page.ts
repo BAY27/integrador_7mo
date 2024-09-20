@@ -25,7 +25,6 @@ export class EstudiantesPage implements OnInit {
   }
 
   async openModal(estudiante?: any) {
-    try {
       const modal = await this.modalController.create({
         component: EstudiantesModalPage,
         componentProps: { estudiante }
@@ -45,10 +44,6 @@ export class EstudiantesPage implements OnInit {
           });
         }
       }
-    } catch (error) {
-      console.error(error)
-
-    }
   }
 
   deleteStudent(codestudiante: number) {
