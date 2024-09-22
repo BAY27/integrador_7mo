@@ -1,8 +1,16 @@
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { waypoints } from './const';
 
-const SERVER_URL = 'http://ec2-15-228-15-79.sa-east-1.compute.amazonaws.com/';
+const SERVER_URL = 'http://ec2-18-228-166-163.sa-east-1.compute.amazonaws.com/';
 declare var google: any;
 
 @Component({
@@ -10,10 +18,9 @@ declare var google: any;
   templateUrl: './real-time.page.html',
   styleUrls: ['./real-time.page.scss'],
 })
-
 export class RealTimePage implements OnInit {
   @ViewChild('map', { static: true }) mapElementRef!: ElementRef;
-  center = { lat: -1.297240, lng: -78.603773 };
+  center = { lat: -1.29724, lng: -78.603773 };
   map: any;
   marker: any;
   realLocationMarker: any; // Marker for the real location
@@ -22,7 +29,7 @@ export class RealTimePage implements OnInit {
   intersectionObserver: any;
   private renderer = inject(Renderer2);
   private socket: Socket;
-  private isDriver: boolean = true
+  private isDriver: boolean = false;
   directionsService: any;
   directionsRenderer: any;
   currentLocationMarker: any; // Marker for current location
@@ -39,7 +46,6 @@ export class RealTimePage implements OnInit {
       this.getCurrentLocation((position) => {
         this.emitBusLocations(position);
       });
-
     }
   }
 
@@ -47,13 +53,33 @@ export class RealTimePage implements OnInit {
     this.loadMap();
 
     if (this.isDriver) {
-      this.interval = setInterval(() => this.trackRealTimeLocation(), 10000)
+      this.interval = setInterval(() => this.trackRealTimeLocation(), 10000);
     } else {
-      this.interval = setInterval(() => this.initCurrentLocationMarker(), 10000)
+      this.interval = setInterval(
+        () => this.initCurrentLocationMarker(),
+        10000
+      );
       this.onBusLocations((msg: any) => {
-        console.log('Received bus_locations:', msg);
-        this.updateLocationOnMap(msg);
+        console.log('🚀 ~ RealTimePage ~ this.onBusLocations ~ msg:', msg);
+        const busLocation = {
+          lat: msg.lat,
+          lng: msg.lng,
+        };
+        this.updateRealLocationMarker(busLocation);
       });
+    }
+  }
+
+  async updateRealLocationMarker(location: { lat: number; lng: number }) {
+    const newPosition = new google.maps.LatLng(location.lat, location.lng);
+
+    if (this.realLocationMarker) {
+      // Si el marcador ya existe, actualiza la posición
+      this.realLocationMarker.setPosition(newPosition);
+      this.map.panTo(newPosition); // Opcional: centra el mapa en la nueva ubicación
+    } else {
+      // Si no existe el marcador, lo crea
+      await this.addRealLocationMarker(location);
     }
   }
 
@@ -80,7 +106,6 @@ export class RealTimePage implements OnInit {
     this.calculateAndDisplayRoute();
   }
 
-
   calculateAndDisplayRoute() {
     const request = {
       origin: this.center, // Start point (UNIANDES)
@@ -99,53 +124,30 @@ export class RealTimePage implements OnInit {
     });
   }
 
-
   trackRealTimeLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation?.getCurrentPosition(val => {
-        if(val.coords)
-              this.emitBusLocations({
-                lat: val.coords.latitude,
-                lng: val.coords.longitude,
-              });
-
-      })
+      navigator.geolocation?.getCurrentPosition((val) => {
+        if (val.coords)
+          this.emitBusLocations({
+            lat: val.coords.latitude,
+            lng: val.coords.longitude,
+          });
+      });
     } else {
       console.error('Geolocation is not supported by this browser.');
     }
   }
+  async addRealLocationMarker(location: { lat: number; lng: number }) {
+    const markerIcon = {
+      url: 'https://icons.veryicon.com/png/o/business/classic-icon/bus-20.png', // URL del icono del bus
+      scaledSize: new google.maps.Size(50, 50), // Tamaño del icono
+    };
 
-  updateRealLocationMarker(location: any) {
-    if (this.realLocationMarker) {
-      const newPosition = new google.maps.LatLng(location.lat, location.lng);
-      this.realLocationMarker?.setPosition(newPosition);
-      this.map.panTo(newPosition);
-    } else {
-      this.addRealLocationMarker(location);
-    }
-  }
-
-  async addRealLocationMarker(location: any) {
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-    const markerIcon = document.createElement('img');
-    markerIcon.src = 'assets/icons/location-pin.png'; // Different icon for real location
-    markerIcon.height = 50;
-    markerIcon.width = 50;
-
-    this.realLocationMarker = new AdvancedMarkerElement({
+    this.realLocationMarker = new google.maps.Marker({
       map: this.map,
       position: location,
-      content: markerIcon,
+      icon: markerIcon,
     });
-
-    const content = this.realLocationMarker.content;
-    content.style.opacity = '0';
-    content.addEventListener('animationend', () => {
-      content.classList.remove('drop');
-      content.style.opacity = '1';
-    });
-    this.intersectionObserver.observe(content);
   }
 
   emitBusLocations(data: any) {
@@ -169,112 +171,59 @@ export class RealTimePage implements OnInit {
     });
   }
 
-
-initCurrentLocationMarker() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(
-      (position) => {
-        const location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-        this.updateCurrentLocationMarker(location);
-      },
-      (error) => {
-        console.error('Error getting current location', error);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000, // 10 seconds
-      }
-    );
-  } else {
-    console.error('Geolocation is not supported by this browser.');
-  }
-}
-
-async updateCurrentLocationMarker(location: any) {
-  if (this.currentLocationMarker) {
-    const newPosition = new google.maps.LatLng(location.lat, location.lng);
-    this.currentLocationMarker.setPosition(newPosition);
-    this.map.panTo(newPosition);
-  } else {
-    await this.addCurrentLocationMarker(location);
-  }
-}
-
-async addCurrentLocationMarker(location: any) {
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-  const markerIcon = document.createElement('img');
-  markerIcon.src = 'assets/icons/location-pin.png'; // Icon for current location
-  markerIcon.height = 50;
-  markerIcon.width = 50;
-
-  this.currentLocationMarker = new AdvancedMarkerElement({
-    map: this.map,
-    position: location,
-    content: markerIcon,
-  });
-}
-
-
-  async addMarker(location: any) {
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
-    const markerIcon = document.createElement('img');
-    markerIcon.src = 'assets/icons/location-bus.png';
-    markerIcon.height = 50;
-    markerIcon.width = 50;
-
-    this.marker = new AdvancedMarkerElement({
-      map: this.map,
-      position: location,
-      gmpDraggable: false,
-      content: markerIcon,
-    });
-
-    const content = this.marker.content;
-    content.style.opacity = '0';
-    content.addEventListener('animationend', (event: any) => {
-      content.classList.remove('drop');
-      content.style.opacity = '1';
-    });
-    this.intersectionObserver.observe(content);
-
-    // Event listener for marker drag
-    this.markerListener = this.marker.addListener("dragend", (event: any) => {
-      const newPosition = event.latLng.toJSON();
-      console.log(newPosition);
-      this.emitBusLocations(newPosition);
-
-      this.marker.position = event.latLng;
-      this.map.panTo(event.latLng);
-    });
-
-    // Event listener for map click
-    this.mapListener = this.map.addListener("click", (event: any) => {
-      const newPosition = event.latLng.toJSON();
-      console.log(newPosition);
-      this.emitBusLocations(newPosition);
-
-      this.marker.position = event.latLng;
-      this.map.panTo(event.latLng);
-    });
-  }
-
-  updateLocationOnMap(location: any) {
-    if (this.marker) {
-      const newPosition = new google.maps.LatLng(location.lat, location.lng);
-      this.marker.position = newPosition;
-      this.map.panTo(newPosition);
+  initCurrentLocationMarker() {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        (position) => {
+          // 40.251012, -111.657500
+          const location = {
+            // lat: position.coords.latitude,
+            // lng: position.coords.longitude,
+            lat: 40.251012,
+            lng: -111.6575,
+          };
+        },
+        (error) => {
+          console.error('Error getting current location', error);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000, // 10 seconds
+        }
+      );
     } else {
-      // If marker does not exist, create it with the new location
-      this.addMarker({ lat: location.lat, lng: location.lng });
+      console.error('Geolocation is not supported by this browser.');
     }
   }
 
-  getCurrentLocation(callback: (position: { lat: number, lng: number }) => void) {
+  async updateCurrentLocationMarker(location: any) {
+    if (this.currentLocationMarker) {
+      const newPosition = new google.maps.LatLng(location.lat, location.lng);
+      this.currentLocationMarker.setPosition(newPosition);
+      this.map.panTo(newPosition);
+    } else {
+      await this.addCurrentLocationMarker(location);
+    }
+  }
+
+  async addCurrentLocationMarker(location: any) {
+    const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
+
+    const markerIcon = document.createElement('img');
+    markerIcon.src = 'https://cdn-icons-png.flaticon.com/512/535/535239.png'; // Icon for current location
+    markerIcon.height = 50;
+    markerIcon.width = 50;
+
+    this.currentLocationMarker = new AdvancedMarkerElement({
+      map: this.map,
+      position: location,
+      content: markerIcon,
+    });
+  }
+
+  getCurrentLocation(
+    callback: (position: { lat: number; lng: number }) => void
+  ) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -285,12 +234,15 @@ async addCurrentLocationMarker(location: any) {
         (error) => {
           console.error('Error getting location', error);
           // Fallback to a default location if needed
-          const defaultLocation = { lat: this.center.lat, lng: this.center.lng };
+          const defaultLocation = {
+            lat: this.center.lat,
+            lng: this.center.lng,
+          };
           callback(defaultLocation);
         },
         {
           enableHighAccuracy: true,
-          timeout: 10000 // 10 seconds
+          timeout: 10000, // 10 seconds
         }
       );
     } else {
@@ -301,7 +253,6 @@ async addCurrentLocationMarker(location: any) {
     }
   }
 
-
   ngOnDestroy(): void {
     if (this.socket) {
       this.socket.disconnect();
@@ -309,7 +260,7 @@ async addCurrentLocationMarker(location: any) {
     }
 
     if (this.interval) {
-      this.interval?.clear()
+      this.interval?.clear();
     }
 
     if (this.mapListener) {
