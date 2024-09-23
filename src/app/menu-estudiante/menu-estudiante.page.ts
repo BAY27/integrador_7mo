@@ -30,7 +30,11 @@ export class MenuEstudiantePage implements OnInit {
       }
     });
   }
-
+  cerrarSesion() {
+    this.servicio.closeSession().then(() => {
+      this.navCtrl.navigateRoot('/home');
+    });
+  }
   // Función para ir a la página de monitoreo
   irmonitoreo() {
     this.navCtrl.navigateForward('/real-time');

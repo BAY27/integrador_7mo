@@ -32,10 +32,13 @@ export class MenuConductorPage implements OnInit {
   }
 
   // Funciones para ir a las páginas de Horarios y Recorridos
-  irhorarios() {
-    this.navCtrl.navigateForward('/horarios');
-  }
+  
 
+  cerrarSesion() {
+    this.servicio.closeSession().then(() => {
+      this.navCtrl.navigateRoot('/home');
+    });
+  }
   irruta() {
     this.navCtrl.navigateForward('/real-time');
   }

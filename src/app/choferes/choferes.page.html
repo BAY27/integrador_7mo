@@ -57,4 +57,9 @@
   <ion-text *ngIf="choferes.length === 0" color="medium" class="ion-padding">
     <p><ion-icon name="alert-circle-outline"></ion-icon> No hay conductores registrados.</p>
   </ion-text>
+  <!-- Botón de Volver -->
+  <ion-button expand="block" color="warning" (click)="volver()" class="ion-margin-top">
+    <ion-icon name="arrow-back-circle-outline" slot="start"></ion-icon>
+    Volver
+  </ion-button>
 </ion-content>

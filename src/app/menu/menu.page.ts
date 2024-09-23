@@ -38,7 +38,12 @@ export class MenuPage implements OnInit {
       }
     });
   }
-
+  cerrarSesion() {
+    this.servicio.closeSession().then(() => {
+      this.navCtrl.navigateRoot('/home');
+    });
+  }
+  
   // Navegaciones a diferentes páginas según el rol de Administrador
   irperfil() {
     this.navCtrl.navigateForward('/perfil');
@@ -58,7 +63,9 @@ export class MenuPage implements OnInit {
   irestudiante() {
     this.navCtrl.navigateForward('/estudiantes');
   }
-
+  irhorarios() {
+    this.navCtrl.navigateForward('/horarios');
+  }
   irbus() {
     this.navCtrl.navigateForward('/bus');
   }

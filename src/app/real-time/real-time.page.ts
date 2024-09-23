@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { waypoints } from './const';
+import { NavController } from '@ionic/angular';
 
 const SERVER_URL = 'http://ec2-18-228-166-163.sa-east-1.compute.amazonaws.com/';
 declare var google: any;
@@ -36,7 +37,8 @@ export class RealTimePage implements OnInit {
   currentLocationMarker: any; // Marker for current location
   private interval: any;
 
-  constructor() {
+  constructor(public navCtrl:NavController) {
+    
     this.socket = io(SERVER_URL);
 
     this.socket.on('connect', () => {
@@ -70,7 +72,10 @@ export class RealTimePage implements OnInit {
       });
     }
   }
-
+  volver() {
+    // Volver a la página anterior en el historial de navegación
+    this.navCtrl.back(); // Usa el historial de navegación
+  }
   async updateRealLocationMarker(location: { lat: number; lng: number }) {
     const newPosition = new google.maps.LatLng(location.lat, location.lng);
 

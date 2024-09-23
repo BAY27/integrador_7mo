@@ -38,6 +38,11 @@
         </ion-button>
       </ion-item>
 
+      <ion-item>
+        <ion-button expand="block" color="tertiary" (click)="irhorarios()">
+          <ion-icon name="time-outline" slot="start"></ion-icon>Horarios
+        </ion-button>
+      </ion-item>
       <!-- Botón Buses -->
       <ion-item lines="none">
         <ion-button expand="block" color="success" class="custom-button" (click)="irbus()">
@@ -52,5 +57,12 @@
         </ion-button>
       </ion-item>
     </ion-card>
+
+    <!-- Botón Cerrar Sesión -->
+    <ion-item lines="none" class="logout-button">
+      <ion-button expand="block" color="danger" (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>Cerrar Sesión
+      </ion-button>
+    </ion-item>
   </div>
 </ion-content>

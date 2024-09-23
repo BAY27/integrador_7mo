@@ -71,7 +71,7 @@ export class HorariosPage implements OnInit {
   }
 
   volver() {
-    this.navCtrl.navigateRoot('/menu-conductor');
+    this.navCtrl.navigateRoot('/menu');
   }
 
   formatearHora(hora: string): string {

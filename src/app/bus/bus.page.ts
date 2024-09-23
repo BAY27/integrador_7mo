@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BusService } from '../services/bus.service'; // Adjust the path as necessary
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { BusModalPage } from '../bus-modal/bus-modal.page';
-
+NavController
 @Component({
   selector: 'app-bus',
   templateUrl: './bus.page.html',
@@ -11,7 +11,7 @@ import { BusModalPage } from '../bus-modal/bus-modal.page';
 export class BusPage {
   buses: any[] = [];
 
-  constructor(private busService: BusService, private modalController: ModalController) {}
+  constructor(public navCtrl:NavController, private busService: BusService, private modalController: ModalController) {}
 
   ionViewWillEnter() {
     this.loadBuses();
@@ -46,7 +46,9 @@ export class BusPage {
       }
     }
   }
-
+  volver() {
+    this.navCtrl.navigateRoot('/menu');
+  }
   async deleteBus(codbus: number) {
     this.busService.deleteBus(codbus).subscribe((data) => {
       this.loadBuses();

@@ -44,7 +44,9 @@ export class ChoferesPage implements OnInit {
     // Navegación a la página de edición pasando el ID del chofer
     this.navCtrl.navigateForward(['editar-chofer', codchofer]); // Se pasa el ID del chofer
   }
-
+  volver() {
+    this.navCtrl.navigateRoot('/menu');
+  }
   // Función para eliminar un chofer
   eliminar(codchofer: string) {
     // Navegación a la página de eliminación pasando el ID del chofer
