@@ -30,6 +30,7 @@ export class RealTimePage implements OnInit {
   private renderer = inject(Renderer2);
   private socket: any;
   isDriver: boolean = localStorage.getItem("role") === "Conductor" || false;
+  role: string = localStorage.getItem("role") || "";
   directionsService: any;
   directionsRenderer: any;
   currentLocationMarker: any; // Marker for current location
