@@ -29,7 +29,7 @@ export class RealTimePage implements OnInit {
   intersectionObserver: any;
   private renderer = inject(Renderer2);
   private socket: any;
-  private isDriver: boolean = localStorage.getItem("role") === "Conductor" || false;
+  isDriver: boolean = localStorage.getItem("role") === "Conductor" || false;
   directionsService: any;
   directionsRenderer: any;
   currentLocationMarker: any; // Marker for current location
