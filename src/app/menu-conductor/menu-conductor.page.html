@@ -4,7 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="menu-conductores-background">
+  <!-- Fondo de imagen aplicado a ion-content -->
+
   <ion-item>
     <ion-label>Bienvenido {{ nombre }}</ion-label>
   </ion-item>
@@ -12,18 +14,20 @@
   <ion-card>
     <!-- Opciones exclusivas para Conductores -->
     <ion-item>
-      <ion-button expand="block" color="tertiary" (click)="irhorarios()"> 
+      <ion-button expand="block" color="tertiary" (click)="irhorarios()">
         <ion-icon name="time-outline" slot="start"></ion-icon>Horarios
       </ion-button>
     </ion-item>
+
     <ion-item>
-      <ion-button expand="block" color="success" (click)="irrecorridos()"> 
-        <ion-icon name="map-outline" slot="start"></ion-icon>Recorridos
+      <ion-button expand="block" color="success" (click)="irruta()">
+        <ion-icon name="map-outline" slot="start"></ion-icon>Ruta en vivo
       </ion-button>
     </ion-item>
+
     <!-- Nuevo botón Servicio de Ruta -->
     <ion-item>
-      <ion-button expand="block" color="primary" (click)="irServicioRuta()"> 
+      <ion-button expand="block" color="primary" (click)="irServicioRuta()">
         <ion-icon name="bus-outline" slot="start"></ion-icon>Servicio de Ruta
       </ion-button>
     </ion-item>

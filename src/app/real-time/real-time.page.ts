@@ -28,7 +28,7 @@ export class RealTimePage implements OnInit {
   markerListener: any;
   intersectionObserver: any;
   private renderer = inject(Renderer2);
-  private socket: Socket;
+  private socket: any;
   private isDriver: boolean = false;
   directionsService: any;
   directionsRenderer: any;
@@ -177,11 +177,11 @@ export class RealTimePage implements OnInit {
         (position) => {
           // 40.251012, -111.657500
           const location = {
-            // lat: position.coords.latitude,
-            // lng: position.coords.longitude,
-            lat: 40.251012,
-            lng: -111.6575,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
           };
+
+          this.updateCurrentLocationMarker(location); // Call to update the marker
         },
         (error) => {
           console.error('Error getting current location', error);
@@ -274,5 +274,5 @@ export class RealTimePage implements OnInit {
 
     console.log('marker listener: ', this.markerListener);
     console.log('map listener: ', this.mapListener);
-  }
+  }
 }

@@ -36,8 +36,8 @@ export class MenuConductorPage implements OnInit {
     this.navCtrl.navigateForward('/horarios');
   }
 
-  irrecorridos() {
-    this.navCtrl.navigateForward('/recorridos');
+  irruta() {
+    this.navCtrl.navigateForward('/real-time');
   }
   // Navegación a la página de Servicio de Ruta
   irServicioRuta() {

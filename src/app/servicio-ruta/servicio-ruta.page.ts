@@ -26,15 +26,18 @@ export class ServicioRutaPage implements OnInit {
 
   // Obtener código del chofer desde la sesión
   obtenerCodChofer() {
-    this.servicio.getSession('cod_persona').then((codchofer) => {
-      if (codchofer) {
-        this.codchofer = +codchofer;  // Convertir a número
-      } else {
-        console.error('No se pudo obtener el código del chofer.');
-      }
+    // Suponiendo que ya tienes el cod_persona almacenado en la sesión
+    this.servicio.getSession('cod_persona').then((cod_persona) => {
+      let datos = { accion: 'obtener_codchofer', cod_persona: cod_persona };
+      this.servicio.postData(datos).subscribe((res: any) => {
+        if (res.estado === true) {
+          this.codchofer = res.codchofer;  // Guardamos el codchofer
+        } else {
+          this.servicio.showToast('Error al obtener el código del conductor.');
+        }
+      });
     });
   }
-
   // Cargar los buses desde la base de datos
   cargarBuses() {
     this.servicio.postData({ accion: 'listar_buses' }).subscribe((res: any) => {
@@ -59,32 +62,25 @@ export class ServicioRutaPage implements OnInit {
 
   // Guardar el servicio de ruta
   guardarServicioRuta() {
-    console.log("CodChofer:", this.codchofer);
-    console.log("CodBus:", this.codbus);
-    console.log("CodHorario:", this.codhorario);
-    console.log("Fecha:", this.fecha);
-  
-    const datos = {
+    let datos = {
       accion: 'guardar_servicio_ruta',
-      codchofer: this.codchofer,
+      codchofer: this.codchofer, // Este es el valor obtenido
       codbus: this.codbus,
       codhorario: this.codhorario,
-      fecha: this.fecha
+      fecha: this.fechaActual,
     };
   
     this.servicio.postData(datos).subscribe((res: any) => {
-      console.log(res);
       if (res.estado === true) {
-        this.servicio.showToast(res.mensaje);
-        this.navCtrl.navigateBack('/menu-conductor');
+        this.servicio.showToast('Servicio de ruta guardado correctamente.');
       } else {
-        this.servicio.showToast('Error al guardar servicio: ' + res.mensaje);
+        this.servicio.showToast('Error al guardar el servicio de ruta.');
       }
     }, (error) => {
       console.error('Error al guardar el servicio de ruta:', error);
-      this.servicio.showToast('Error al conectar con el servidor.');
     });
   }
+  
   
   // Función para volver al menú anterior
   volver() {

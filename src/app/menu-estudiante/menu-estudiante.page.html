@@ -5,16 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Bienvenido {{ nombre }}</ion-label>
-  </ion-item>
-
-  <ion-card>
-    <!-- Solo Monitoreo para Estudiantes -->
-    <ion-item>
-      <ion-button expand="block" color="warning" (click)="irmonitoreo()"> 
-        <ion-icon name="pulse-outline" slot="start"></ion-icon>Monitoreo tiempo real
-      </ion-button>
+  <div class="overlay">
+    <ion-item lines="none" class="welcome-label">
+      <ion-label>Bienvenido {{ nombre }}</ion-label>
     </ion-item>
-  </ion-card>
+
+    <ion-card class="custom-card">
+      <!-- Solo Monitoreo para Estudiantes -->
+      <ion-item lines="none">
+        <ion-button expand="block" color="warning" class="custom-button" (click)="irmonitoreo()">
+          <ion-icon name="pulse-outline" slot="start"></ion-icon>RUTA BUS EN VIVO
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
 </ion-content>

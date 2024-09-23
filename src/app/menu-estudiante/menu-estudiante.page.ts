@@ -33,6 +33,6 @@ export class MenuEstudiantePage implements OnInit {
 
   // Función para ir a la página de monitoreo
   irmonitoreo() {
-    this.navCtrl.navigateForward('/monitoreo');
+    this.navCtrl.navigateForward('/real-time');
   }
 }

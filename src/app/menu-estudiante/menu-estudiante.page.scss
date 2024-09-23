@@ -1,0 +1,66 @@
+ion-content {
+    --background: none;
+    background: url('/assets/img/menu_estudiantes.png') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .overlay {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card {
+    margin-top: 10px;
+  }
+  
+  .custom-button {
+    font-weight: bold;
+  }
+  
+  .title-center {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .welcome-label {
+    font-size: 1.2em;
+    color: white; /* Color claro para contraste */
+    text-align: center;
+  }
+  
+  ion-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #00eaff; /* Color llamativo */
+    text-shadow: 0 0 15px rgba(0, 234, 255, 0.8), 0 0 25px rgba(0, 234, 255, 1), 0 0 35px rgba(0, 234, 255, 1); /* Efecto xenón */
+  }
+  
+  .welcome-label {
+    font-size: 1.8em;
+    color: #ffcc00; /* Amarillo brillante para contrastar */
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8), 0 0 15px rgba(255, 204, 0, 1), 0 0 20px rgba(255, 204, 0, 1); /* Efecto xenón */
+  }
+  
+  .custom-button {
+    font-weight: bold;
+    background-color: #333333;
+    color: white;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 255, 255, 0.4); /* Botón con efecto */
+  }
+  
+  ion-label {
+    color: white; /* Blanco para contraste */
+  }
+  
+  .custom-card ion-button {
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
