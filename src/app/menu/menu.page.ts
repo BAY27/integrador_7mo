@@ -49,10 +49,10 @@ export class MenuPage implements OnInit {
   }
 
   irbus() {
-    this.navCtrl.navigateForward('/buses');
+    this.navCtrl.navigateForward('/bus');
   }
 
   irmonitoreo() {
-    this.navCtrl.navigateForward('/monitoreo');
+    this.navCtrl.navigateForward('/real-time');
   }
 }

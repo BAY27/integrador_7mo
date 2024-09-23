@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class StudianteService {
 
-  private apiUrl = 'http://localhost'; // Replace with your API URL
+  private apiUrl = 'http://localhost/WsBuses24'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 

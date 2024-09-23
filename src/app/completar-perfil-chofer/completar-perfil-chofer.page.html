@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Completar Perfil Chofer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Datos del chofer que no se pueden modificar -->
+  <ion-item>
+    <ion-label position="floating">Cédula</ion-label>
+    <ion-input [(ngModel)]="cedula" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombres</ion-label>
+    <ion-input [(ngModel)]="nombre" disabled></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellidos</ion-label>
+    <ion-input [(ngModel)]="apellido" disabled></ion-input>
+  </ion-item>
+
+  <!-- Datos faltantes para chofer -->
+  <ion-item>
+    <ion-label position="floating">Teléfono</ion-label>
+    <ion-input [(ngModel)]="telefono" type="tel"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Licencia</ion-label>
+    <ion-input [(ngModel)]="licencia" type="text"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="completarPerfil()">Guardar</ion-button>
+</ion-content>

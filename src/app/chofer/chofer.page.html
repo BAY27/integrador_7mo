@@ -1,0 +1,57 @@
+<ion-header [translucent]="true"> 
+  <ion-toolbar>
+    <ion-title text-center style="font-size: 24px; color: #FF5722;"> <!-- Título centrado, grande y llamativo -->
+      Chofer Bus UNIANDES
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Logo agregado debajo del título -->
+  <div style="text-align: center; margin-top: 20px;">
+    <img src="assets/img/logo.png" alt="Logo UNIANDES" style="width: 100px; height: auto;" />
+  </div>
+
+  <!-- Campo para la cédula con ícono -->
+  <ion-item>
+    <ion-icon name="card-outline" slot="start"></ion-icon> <!-- Icono de cédula -->
+    <ion-input label="Cédula" [(ngModel)]="txt_cedula" type="text" (focusout)="verificarCedula()"></ion-input>
+    <ion-label color="danger">{{mensaje}}</ion-label> <!-- Mostrar mensaje si la cédula ya está registrada -->
+  </ion-item>
+
+  <!-- Campo para nombres con ícono -->
+  <ion-item>
+    <ion-icon name="person-outline" slot="start"></ion-icon> <!-- Icono de nombres -->
+    <ion-input label="Nombres" [(ngModel)]="txt_nombre" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Campo para apellidos con ícono -->
+  <ion-item>
+    <ion-icon name="people-outline" slot="start"></ion-icon> <!-- Icono de apellidos -->
+    <ion-input label="Apellidos" [(ngModel)]="txt_apellido" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Campo para teléfono con ícono -->
+  <ion-item>
+    <ion-icon name="call-outline" slot="start"></ion-icon> <!-- Icono de teléfono -->
+    <ion-input label="Teléfono" [(ngModel)]="txt_telefono" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Campo para licencia con ícono -->
+  <ion-item>
+    <ion-icon name="car-outline" slot="start"></ion-icon> <!-- Icono de licencia -->
+    <ion-input label="Licencia" [(ngModel)]="txt_licencia" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Botones para guardar y cancelar con íconos -->
+  <ion-item>
+    <ion-button color="success" expand="block" (click)="guardar()">
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      Guardar
+    </ion-button>
+    <ion-button color="warning" expand="block" (click)="cancelar()">
+      <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+      Cancelar
+    </ion-button>
+  </ion-item>
+</ion-content>

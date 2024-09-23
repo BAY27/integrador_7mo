@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="title-centered">
+      <ion-icon name="people-outline" style="font-size: 24px; margin-right: 10px;"></ion-icon>
+      Conductores
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Botón flotante para añadir un nuevo chofer -->
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="success" (click)="nuevo()">
+    <ion-icon name="person-add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <!-- Lista de choferes -->
+    <ion-item-sliding *ngFor="let chofer of choferes">
+      <ion-item lines="full">
+        <!-- Icono o avatar del chofer -->
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <!-- Información del chofer -->
+        <ion-label>
+          <h2 class="chofer-nombre"><b>{{chofer.nombre}} {{chofer.apellido}}</b></h2>
+          <p><ion-icon name="id-card-outline"></ion-icon> <b>Cédula:</b> {{chofer.cedula}}</p>
+          <p><ion-icon name="card-outline"></ion-icon> <b>Licencia:</b> {{chofer.licencia}}</p>
+          <p><ion-icon name="call-outline"></ion-icon> <b>Teléfono:</b> {{chofer.telefono}}</p>
+        </ion-label>
+        <!-- Imagen al final de la fila -->
+        <ion-thumbnail slot="end">
+          <img src="/assets/img/lista_choferes.png" alt="Imagen lista de choferes">
+        </ion-thumbnail>
+      </ion-item>
+      <!-- Opciones de editar y eliminar con iconos -->
+      <ion-item-options side="end">
+        <!-- Botón de Editar con efecto de luces -->
+        <ion-item-option class="xenon-effect" color="warning" (click)="editar(chofer.codchofer)">
+          <ion-icon slot="start" name="create-outline"></ion-icon>
+          Editar
+        </ion-item-option>
+      
+        <!-- Botón de Eliminar con efecto de luces -->
+        <ion-item-option class="xenon-effect" color="danger" (click)="eliminar(chofer.codchofer)">
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Eliminar
+        </ion-item-option>
+      </ion-item-options>
+      
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Mensaje si no hay choferes -->
+  <ion-text *ngIf="choferes.length === 0" color="medium" class="ion-padding">
+    <p><ion-icon name="alert-circle-outline"></ion-icon> No hay conductores registrados.</p>
+  </ion-text>
+</ion-content>

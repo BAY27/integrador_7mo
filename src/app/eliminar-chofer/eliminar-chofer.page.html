@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Eliminar Chofer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input label="Cédula" [(ngModel)]="txt_cedula" type="text" disabled></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Nombres" [(ngModel)]="txt_nombre" type="text" disabled></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Apellidos" [(ngModel)]="txt_apellido" type="text" disabled></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Teléfono" [(ngModel)]="txt_telefono" type="text" disabled></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Licencia" [(ngModel)]="txt_licencia" type="text" disabled></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button color="danger" id="mostrar-alerta">Eliminar</ion-button>
+    <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>
+  </ion-item>
+
+  <!-- Alerta de confirmación para eliminar -->
+  <ion-alert class="custom"
+    trigger="mostrar-alerta"
+    header="¿Está seguro de eliminar el registro?"
+    [buttons]="botones">
+  </ion-alert>
+</ion-content>

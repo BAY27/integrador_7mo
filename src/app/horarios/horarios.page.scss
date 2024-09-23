@@ -1,0 +1,33 @@
+ion-content {
+    --background: #f0f0f5;
+    
+    background-image: url('/assets/img/horarios.png'); /* Ruta de la imagen */
+    background-size: cover; /* La imagen cubrirá toda la pantalla */
+    background-position: center center; /* Centramos la imagen */
+    background-repeat: no-repeat; /* No se repite la imagen */
+  }
+  
+  ion-item {
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente para los elementos */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  ion-button {
+    margin-top: 10px;
+    background-color: #3880ff; /* Color de botón primario */
+    color: #fff; /* Color del texto */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  .page-horarios {
+    background-image: url('/assets/img/horarios.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; // Asegura que ocupe todo el alto de la vista
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+    

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Editar Chofer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Cédula (readonly) -->
+  <ion-item>
+    <ion-input label="Cédula" [(ngModel)]="txt_cedula" type="text" readonly></ion-input>
+  </ion-item>
+
+  <!-- Nombres -->
+  <ion-item>
+    <ion-input label="Nombres" [(ngModel)]="txt_nombre" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Apellidos -->
+  <ion-item>
+    <ion-input label="Apellidos" [(ngModel)]="txt_apellido" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Teléfono -->
+  <ion-item>
+    <ion-input label="Teléfono" [(ngModel)]="txt_telefono" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Licencia -->
+  <ion-item>
+    <ion-input label="Licencia" [(ngModel)]="txt_licencia" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Botones Guardar y Cancelar -->
+  <ion-item>
+    <ion-button color="success" (click)="actualizar()">Guardar</ion-button>
+    <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>
+  </ion-item>
+</ion-content>

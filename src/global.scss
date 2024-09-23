@@ -24,6 +24,7 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 /**
  * Ionic Dark Mode
@@ -35,3 +36,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+.text-center {
+    text-align: center;
+  }
+  
+  ion-card {
+    margin: 20px;
+    border-radius: 10px;
+  }
+  
+  ion-button {
+    font-weight: bold;
+  }
+  

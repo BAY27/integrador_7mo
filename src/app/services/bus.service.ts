@@ -15,7 +15,7 @@ export interface Bus {
   providedIn: 'root',
 })
 export class BusService {
-  private apiUrl = 'http://localhost/buses.php'; // Replace with your API URL
+  private apiUrl = 'http://localhost/WsBuses24/buses.php'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 

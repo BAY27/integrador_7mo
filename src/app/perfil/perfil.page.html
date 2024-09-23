@@ -5,28 +5,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-item>
-  <ion-label>Cedula</ion-label> 
-  <ion-label>{{cedula}}</ion-label>
-</ion-item>
-<ion-item>
-  <ion-input label="Nombre" [(ngModel)]="txt_nombre"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input label="Apellido" [(ngModel)]="txt_apellido"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input label="E-mail" [(ngModel)]="txt_correo"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input type="password" label="clave" [(ngModel)]="txt_clave" (focusout)="vclave()"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input type="password" label="Verificar clave" [(ngModel)]="txt_cclave"(focusout)="vclave()" ></ion-input>
-  <label>{{mensaje}}</label>
-</ion-item>
-<ion-item>
-<ion-button class="succeess" (click)=" actualizar()"> Actualizar</ion-button>
-<ion-button class="warning" (click)="cancelar()"> Cancelar</ion-button>
-</ion-item>
+  <ion-item>
+    <ion-label>Cédula</ion-label>
+    <ion-label>{{cedula}}</ion-label>
+  </ion-item>
+  
+  <!-- Campo de Nombre -->
+  <ion-item>
+    <ion-input label="Nombre" [(ngModel)]="txt_nombre"></ion-input>
+  </ion-item>
+
+  <!-- Campo de Apellido -->
+  <ion-item>
+    <ion-input label="Apellido" [(ngModel)]="txt_apellido"></ion-input>
+  </ion-item>
+
+  <!-- Campo de Correo -->
+  <ion-item>
+    <ion-input label="E-mail" [(ngModel)]="txt_correo"></ion-input>
+  </ion-item>
+
+  <!-- Campo de Clave -->
+  <ion-item>
+    <ion-input type="password" label="Clave" [(ngModel)]="txt_clave" (focusout)="vclave()"></ion-input>
+  </ion-item>
+
+  <!-- Campo de Verificar Clave -->
+  <ion-item>
+    <ion-input type="password" label="Verificar Clave" [(ngModel)]="txt_cclave" (focusout)="vclave()"></ion-input>
+    <label>{{mensaje}}</label>
+  </ion-item>
+
+  <!-- Campo del Rol (Solo Visualización) -->
+  <ion-item>
+    <ion-label>Rol</ion-label>
+    <ion-label>{{txt_rol}}</ion-label> <!-- Mostrar el rol pero sin opción de editar -->
+  </ion-item>
+
+  <!-- Botones para Actualizar o Cancelar -->
+  <ion-item>
+    <ion-button color="success" (click)="actualizar()">Actualizar</ion-button>
+    <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>
+  </ion-item>
 </ion-content>

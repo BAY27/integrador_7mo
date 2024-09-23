@@ -5,26 +5,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- Campo de cédula -->
   <ion-item>
     <ion-input label="Cédula" type="text" [(ngModel)]="txt_cedula" (focusout)="vcedula()" required></ion-input>
   </ion-item>
 
+  <!-- Campo de nombre -->
   <ion-item>
     <ion-input label="Nombre" type="text" [(ngModel)]="txt_nombre" name="nombre" required></ion-input>
   </ion-item>
 
+  <!-- Campo de apellido -->
   <ion-item>
     <ion-input label="Apellido" type="text" [(ngModel)]="txt_apellido" name="apellido" required></ion-input>
   </ion-item>
 
+  <!-- Campo de clave -->
   <ion-item>
     <ion-input label="Clave" type="password" [(ngModel)]="txt_clave" name="clave" required></ion-input>
   </ion-item>
 
+  <!-- Campo de correo -->
   <ion-item>
     <ion-input label="Correo" type="email" [(ngModel)]="txt_correo" name="correo" required></ion-input>
   </ion-item>
 
+  <!-- Campo de selección de rol -->
+  <ion-item>
+    <ion-label>Rol</ion-label>
+    <ion-select [(ngModel)]="txt_rol" placeholder="Seleccionar Rol" required>
+      <ion-select-option value="Administrador">Administrador</ion-select-option>
+      <ion-select-option value="Estudiante">Estudiante</ion-select-option>
+      <ion-select-option value="Conductor">Conductor</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Botones de acción -->
   <ion-item lines="none" class="ion-justify-content-center">
     <ion-button color="success" (click)="registrarPersona()">Registrar</ion-button>
     <ion-button color="warning" (click)="cancelar()">Cancelar</ion-button>

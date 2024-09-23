@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="text-center">🚌 Horarios de las Rutas 🚌</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>📅 Añadir Horario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <!-- Campo para la hora de inicio con icono -->
+        <ion-item>
+          <ion-icon name="time-outline" slot="start" color="primary"></ion-icon>
+          <ion-label position="floating">Hora Inicio</ion-label>
+          <ion-input type="time" [(ngModel)]="horaInicio"></ion-input>
+        </ion-item>
+
+        <!-- Campo para la hora de fin con icono -->
+        <ion-item>
+          <ion-icon name="time-outline" slot="start" color="primary"></ion-icon>
+          <ion-label position="floating">Hora Fin</ion-label>
+          <ion-input type="time" [(ngModel)]="horaFin"></ion-input>
+        </ion-item>
+
+        <!-- Botón de agregar horario con icono -->
+        <ion-button expand="block" (click)="agregarHorario()" color="success" class="ion-margin-top">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          Agregar Horario
+        </ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>📋 Horarios Existentes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let horario of horarios">
+          <ion-icon name="time-outline" slot="start" color="tertiary"></ion-icon>
+          <ion-label>{{ formatearHora(horario.horainicio) }} - {{ formatearHora(horario.horafin) }}</ion-label>
+          <ion-button fill="clear" color="danger" slot="end" (click)="eliminarHorario(horario.codhorario)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón de Volver -->
+  <ion-button expand="block" color="warning" (click)="volver()" class="ion-margin-top">
+    <ion-icon name="arrow-back-circle-outline" slot="start"></ion-icon>
+    Volver
+  </ion-button>
+</ion-content>

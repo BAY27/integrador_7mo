@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Servicio de Ruta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Seleccione Bus</ion-label>
+    <ion-select [(ngModel)]="codbus">
+      <ion-select-option *ngFor="let bus of buses" [value]="bus.codbus">{{ bus.placa }} - {{ bus.marca }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Seleccione Horario</ion-label>
+    <ion-select [(ngModel)]="codhorario">
+      <ion-select-option *ngFor="let horario of horarios" [value]="horario.codhorario">{{ horario.horainicio }} - {{ horario.horafin }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Seleccione Fecha</ion-label>
+    <ion-datetime display-format="YYYY-MM-DD" picker-format="YYYY-MM-DD" [(ngModel)]="fecha"></ion-datetime>
+  </ion-item>
+
+  <ion-button expand="block" color="success" (click)="guardarServicioRuta ()">Guardar Servicio de Ruta</ion-button>
+  <ion-button expand="block" color="light" (click)="volver()">Volver</ion-button>
+</ion-content>

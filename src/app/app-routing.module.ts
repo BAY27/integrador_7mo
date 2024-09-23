@@ -27,24 +27,7 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-  {
-    path: 'contactos',
-    loadChildren: () => import('./contactos/contactos.module').then( m => m.ContactosPageModule)
-  },
-  {
-    path: 'contacto',
-    loadChildren: () => import('./contacto/contacto.module').then( m => m.ContactoPageModule)
-  },
-  {
-    path: 'econtacto',
-    loadChildren: () => import('./econtacto/econtacto.module').then( m => m.EcontactoPageModule)
-  },
-  {
-    path: 'mcontacto',
-    loadChildren: () => import('./mcontacto/mcontacto.module').then( m => m.McontactoPageModule)
-  },
-
-
+ 
   {
     path: 'menu-estudiante',
     loadChildren: () => import('./menu-estudiante/menu-estudiante.module').then( m => m.MenuEstudiantePageModule)
@@ -69,6 +52,35 @@ const routes: Routes = [
     path: 'bus',
     loadChildren: () => import('./bus/bus.module').then( m => m.BusPageModule)
   },
+{
+    path: 'choferes',
+    loadChildren: () => import('./choferes/choferes.module').then( m => m.ChoferesPageModule)
+  },
+  {
+    path: 'chofer',
+    loadChildren: () => import('./chofer/chofer.module').then( m => m.ChoferPageModule)
+  },
+  {
+    path: 'editar-chofer/:id', // Ruta que incluye el parámetro `id`
+    loadChildren: () => import('./editar-chofer/editar-chofer.module').then( m => m.EditarChoferPageModule)
+  },
+  {
+    path: 'eliminar-chofer/:id', // Ruta que incluye el parámetro `id`
+    loadChildren: () => import('./eliminar-chofer/eliminar-chofer.module').then( m => m.EliminarChoferPageModule)
+  },
+  {
+    path: 'completar-perfil-chofer',
+    loadChildren: () => import('./completar-perfil-chofer/completar-perfil-chofer.module').then( m => m.CompletarPerfilChoferPageModule)
+  },  {
+    path: 'horarios',
+    loadChildren: () => import('./horarios/horarios.module').then( m => m.HorariosPageModule)
+  },
+  {
+    path: 'servicio-ruta',
+    loadChildren: () => import('./servicio-ruta/servicio-ruta.module').then( m => m.ServicioRutaPageModule)
+  },
+
+
 
 ];
 

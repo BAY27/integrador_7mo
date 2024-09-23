@@ -7,10 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BusModalPage } from './bus-modal/bus-modal.page';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [AppComponent, BusModalPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, FormsModule],
+  imports: [BrowserModule, MatDialogModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

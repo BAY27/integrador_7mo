@@ -1,0 +1,22 @@
+/* Efecto de luces de xenón (parpadeo) */
+.xenon-effect {
+    position: relative;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  /* Efecto en hover o cuando se está presionando */
+  .xenon-effect:hover {
+    box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 1), 0px 0px 20px 4px rgba(255, 255, 255, 0.8), 0px 0px 30px 6px rgba(255, 255, 255, 0.6);
+    animation: xenon-flash 0.6s infinite alternate;
+  }
+  
+  /* Animación de las luces encendiéndose y apagándose */
+  @keyframes xenon-flash {
+    0% {
+      box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5), 0px 0px 20px 10px rgba(255, 255, 255, 0.4), 0px 0px 25px 15px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+      box-shadow: 0px 0px 30px 15px rgba(255, 255, 255, 1), 0px 0px 40px 20px rgba(255, 255, 255, 0.9), 0px 0px 50px 25px rgba(255, 255, 255, 0.8);
+    }
+  }
+  

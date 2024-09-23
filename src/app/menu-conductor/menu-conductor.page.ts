@@ -39,4 +39,8 @@ export class MenuConductorPage implements OnInit {
   irrecorridos() {
     this.navCtrl.navigateForward('/recorridos');
   }
+  // Navegación a la página de Servicio de Ruta
+  irServicioRuta() {
+    this.navCtrl.navigateForward('/servicio-ruta');
+  }
 }

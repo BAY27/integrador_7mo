@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
-AccesoService
+
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.page.html',
@@ -14,58 +14,64 @@ export class RegistrarPage {
   txt_apellido: string = '';
   txt_clave: string = '';
   txt_correo: string = '';
-  
-  mensaje: string = '';
-  constructor(public http:HttpClient, public navCtrl:NavController,public modalCtrl:ModalController, public servicio:AccesoService) { }
-  
+  txt_rol: string = 'Conductor';  // Predeterminado a Conductor
+
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public servicio: AccesoService) { }
+
+  // Validación de la cédula
   vcedula() {
-    
     let datos = {
       accion: 'vcedula',
       cedula: this.txt_cedula,
     };
 
-    // Realiza la consulta para verificar si la cédula ya está registrada
     this.servicio.postData(datos).subscribe((res: any) => {
       if (res.estado) {
-        this.txt_cedula="";
+        this.txt_cedula = '';
         this.servicio.showToast(res.mensaje);
       }
     });
   }
-  registrarPersona() {
-    if (
-      this.txt_cedula === '' || 
-      this.txt_nombre === '' || 
-      this.txt_apellido === '' || 
-      this.txt_clave === '' || 
-      this.txt_correo === ''
-    ) {
-      this.servicio.showToast('Faltan datos');
-    } else {
-      let datos = {
-        accion: 'registrar',
-        cedula: this.txt_cedula,
-        nombre: this.txt_nombre,
-        apellido: this.txt_apellido,
-        clave: this.txt_clave,
-        correo: this.txt_correo,
-      };
 
-      this.servicio.postData(datos).subscribe((res: any) => {
-        if (res.estado === true) {
-          this.modalCtrl.dismiss();
-          this.servicio.showToast(res.mensaje);
-        } else {
-          this.servicio.showToast(res.mensaje);
-        }
-      });
+  // Registro de la persona
+  async registrarPersona() {
+    if (!this.txt_cedula || !this.txt_nombre || !this.txt_apellido || !this.txt_clave || !this.txt_correo || !this.txt_rol) {
+      this.servicio.showToast('Faltan datos');
+      return;
     }
+
+    let datos = {
+      accion: 'registrar',
+      cedula: this.txt_cedula,
+      nombre: this.txt_nombre,
+      apellido: this.txt_apellido,
+      clave: this.txt_clave,
+      correo: this.txt_correo,
+      tipo_persona: this.txt_rol
+    };
+
+    this.servicio.postData(datos).subscribe((res: any) => {
+      if (res.estado === true) {
+        this.servicio.showToast('Usuario registrado correctamente');
+        this.modalCtrl.dismiss();
+
+        if (this.txt_rol === 'Conductor') {
+          // Navegar a la página de completar perfil con los datos del conductor
+          this.navCtrl.navigateForward(['/completar-perfil-chofer'], {
+            queryParams: {
+              cedula: datos.cedula,
+              nombre: datos.nombre,
+              apellido: datos.apellido
+            }
+          });
+        }
+      } else {
+        this.servicio.showToast(res.mensaje);
+      }
+    });
   }
 
-cancelar() {
-  this.modalCtrl.dismiss();
-}
-
-
+  cancelar() {
+    this.modalCtrl.dismiss();
+  }
 }
