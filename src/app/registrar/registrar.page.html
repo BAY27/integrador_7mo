@@ -30,8 +30,8 @@
     <ion-input label="Correo" type="email" [(ngModel)]="txt_correo" name="correo" required></ion-input>
   </ion-item>
 
-  <!-- Campo de selección de rol -->
-  <ion-item>
+  <!-- Mostrar el campo de rol solo si 'mostrarRol' es true -->
+  <ion-item *ngIf="mostrarRol">
     <ion-label>Rol</ion-label>
     <ion-select [(ngModel)]="txt_rol" placeholder="Seleccionar Rol" required>
       <ion-select-option value="Administrador">Administrador</ion-select-option>

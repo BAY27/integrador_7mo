@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
 
@@ -9,6 +8,7 @@ import { AccesoService } from '../servicio/acceso.service';
   styleUrls: ['./registrar.page.scss'],
 })
 export class RegistrarPage {
+  @Input() mostrarRol: boolean = false; // Recibir el valor desde el modal
   txt_cedula: string = '';
   txt_nombre: string = '';
   txt_apellido: string = '';
@@ -16,9 +16,12 @@ export class RegistrarPage {
   txt_correo: string = '';
   txt_rol: string = 'Conductor';  // Predeterminado a Conductor
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public servicio: AccesoService) { }
+  constructor(
+    public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public servicio: AccesoService
+  ) {}
 
-  // Validación de la cédula
   vcedula() {
     let datos = {
       accion: 'vcedula',
@@ -33,9 +36,8 @@ export class RegistrarPage {
     });
   }
 
-  // Registro de la persona
   async registrarPersona() {
-    if (!this.txt_cedula || !this.txt_nombre || !this.txt_apellido || !this.txt_clave || !this.txt_correo || !this.txt_rol) {
+    if (!this.txt_cedula || !this.txt_nombre || !this.txt_apellido || !this.txt_clave || !this.txt_correo || (this.mostrarRol && !this.txt_rol)) {
       this.servicio.showToast('Faltan datos');
       return;
     }
@@ -47,7 +49,7 @@ export class RegistrarPage {
       apellido: this.txt_apellido,
       clave: this.txt_clave,
       correo: this.txt_correo,
-      tipo_persona: this.txt_rol
+      tipo_persona: this.txt_rol || "Estudiante"
     };
 
     this.servicio.postData(datos).subscribe((res: any) => {
@@ -56,7 +58,6 @@ export class RegistrarPage {
         this.modalCtrl.dismiss();
 
         if (this.txt_rol === 'Conductor') {
-          // Navegar a la página de completar perfil con los datos del conductor
           this.navCtrl.navigateForward(['/completar-perfil-chofer'], {
             queryParams: {
               cedula: datos.cedula,

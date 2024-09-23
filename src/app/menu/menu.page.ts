@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { AccesoService } from '../servicio/acceso.service';
+import { RegistrarPage } from '../registrar/registrar.page';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +12,10 @@ export class MenuPage implements OnInit {
   nombre: string = "";
   roles: string = "";
 
-  constructor(public navCtrl: NavController, public servicio: AccesoService) {}
+  constructor(
+    public navCtrl: NavController,
+    public servicio: AccesoService,
+    public modalCtrl: ModalController) {}
 
   // Obtener los datos desde la sesión cuando la página se inicializa
   ngOnInit() {
@@ -38,6 +42,13 @@ export class MenuPage implements OnInit {
   // Navegaciones a diferentes páginas según el rol de Administrador
   irperfil() {
     this.navCtrl.navigateForward('/perfil');
+  }
+  async crearUsuario() {
+    const modal = await this.modalCtrl.create({
+      component: RegistrarPage,
+      componentProps: { mostrarRol: true }
+    });
+    return await modal.present();
   }
 
   irchofer() {
