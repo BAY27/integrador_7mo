@@ -40,6 +40,7 @@
               this.servicio.createSession('nombre_persona', res.persona[0].nombre);
               this.servicio.createSession('tipo_persona', res.persona[0].tipo_persona);
 
+          localStorage.setItem("role", res.persona[0].tipo_persona)
 
           // Redirigir según el rol del usuario
           if (res.persona[0].tipo_persona === 'Administrador') {
