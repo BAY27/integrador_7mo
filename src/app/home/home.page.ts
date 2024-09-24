@@ -13,6 +13,8 @@
     txt_usuario: string = "";
     txt_clave: string = "";
 
+    private loginAttempts: number = 0;
+
     constructor(
       public navCtrl: NavController,
       public servicio: AccesoService,
@@ -53,7 +55,11 @@
             console.log('Redirigir al menú de Conductor');
             this.navCtrl.navigateRoot('/menu-conductor');
           }
+        } else if (this.loginAttempts >= 2) {
+          // Show alert if the user has reached the maximum number of attempts
+          this.servicio.showToast("Su cuenta ha sido bloqueada");
         } else {
+          this.loginAttempts++;
           // Mostrar un mensaje de error si las credenciales son incorrectas
           console.log('Credenciales incorrectas:', res.mensaje);
           this.servicio.showToast(res.mensaje);
