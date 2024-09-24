@@ -37,8 +37,21 @@ export class RegistrarPage {
   }
 
   async registrarPersona() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
     if (!this.txt_cedula || !this.txt_nombre || !this.txt_apellido || !this.txt_clave || !this.txt_correo || (this.mostrarRol && !this.txt_rol)) {
       this.servicio.showToast('Faltan datos');
+      return;
+    }
+
+    if (!emailRegex.test(this.txt_correo)) {
+      this.servicio.showToast('Correo no válido');
+      return;
+    }
+
+    if (!passwordRegex.test(this.txt_clave)) {
+      this.servicio.showToast('La clave debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales');
       return;
     }
 
